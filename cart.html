@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description"
+        content="Orinoco est un site de vente de caméras vintage, capturez le monde de la photographie avec nous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/119eee4249.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <title>Orinoco Panier</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="col navbar navbar-expand navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"> <img src="images/logo_orinoco.png" alt="logo_orinoco"
+                    class="w-50"> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item cart-btn">
+                        <a href="" class="cart-link">
+                            <span class="nav-icon">
+                                <i class="fas fa-cart-plus"></i>
+                            </span>
+                            <div class="cart-items">0</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- HeaderEnd -->
+    <!-- Cart -->
+    <section class="container container-product-cart">
+        <div class="row">
+        <div class="col col-md-9 cart-products">
+            <h3>Mon panier</h3>
+    <!-- cartSingleProduct-->
+            <div class="cart-product">
+            <div class="product-img-container">
+                <img class="product-img" src="/images/vcam_2.jpg" alt="image produit">
+            </div>
+            <div class="product-info">
+                <p class="product-title">Ma Camera</p>
+                <p class="product-type"> Objectif vintage 50mm</p>
+                <a href="#" class="remove-btn"> <i class="fas fa-trash-alt"></i> supprimer</a>
+            </div>
+            </div>
+<!-- cartSingleProductEnd-->
+        </div>
+        <div class="col col-md-3 cart-total">
+            <h3>Total</h3>
+            <p>150€</p>
+            <a href="" class="btn btn-dark">Commander</a>
+        </div>
+        </div>
+    </section>
+    <!-- CartEnd -->
+
+                <!--<div class="quantity-info">
+                                <select name="camera" id="camera-type">
+                                    <option value="">choix de l'objectif</option>
+                                    <option value="type1">Zeiss 50mm f1.8</option>
+                                    <option value="type2">Zeiss 75mm f1.8</option>
+                                    <option value="type2">Zeiss 200mm f4</option>
+                                </select>
+                                <p class="product-price">150€</p>
+                            </div>-->
