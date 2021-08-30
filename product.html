@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/style.css">
 
 
-    <title>Orinoco Panier</title>
+    <title>Orinoco Produit</title>
 </head>
 
 <body>
@@ -42,44 +42,34 @@
         </div>
     </header>
     <!-- HeaderEnd -->
-    <!-- Cart -->
-    <section class="container container-product-cart">
-        <div class="row">
-        <div class="col-12 p-0 my-3 mt col-md-9 pr-md-3 cart-products">
-            <h3>Mon panier</h3>
-    <!-- cartSingleProduct-->
-            <div class="cart-product">
-            <div class="product-img-container">
-                <img class="product-img" src="/images/vcam_2.jpg" alt="image produit">
-            </div>
-            <div class="product-info">
-                <p class="product-title">Ma Camera</p>
-                <p class="product-type"> Objectif vintage 50mm</p>
-                <a href="#" class="remove-btn"> <i class="fas fa-trash-alt"></i> supprimer</a>
-            </div>
-            <div class="product-quantity ml-auto mr-3">
-                <i class="fas fa-sort-up btn-addCart"></i>
-                <p class="cart-quantity ">0</p>
-                <i class="fas fa-sort-down btn-removeCart"></i>
-            </div>
-            </div>
-<!-- cartSingleProductEnd-->
-        </div>
-        <div class="col-12 col-md-3 cart-total">
-            <h3>Total</h3>
-            <p>150€</p>
-            <a href="" class="btn btn-dark">Commander</a>
-        </div>
-        </div>
-    </section>
-    <!-- CartEnd -->
+
+    <!-- product -->
+    <div class="container">
+    <div class="row">
+<div class="col-4">
+    <img src="/images/vcam_4.jpg" alt="" class="product-img">
+</div>
+<div class="col-8">
+<h2>Camera</h2>
+<select name="camera-type" id="type-selector" class="selector">
+    <option value="">choisissez un objectif...</option>
+    <option value="type1">50mm 1.4</option>
+    <option value="type2">75mm f1.8</option>
+    <option value="type3">100mm f2</option>
+</select>
+<h3>150€</h3>
+<p class="product-discription"></p>
+</div>
+
+    </div>
+    </div>
+    <!-- product -->
 
 <!-- Footer -->
 <footer class="container-fluid mt-5">
     <p class="copyright">Copyright 2021 - Orinoco</p>
 </footer>
 <!-- FooterEnd -->
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

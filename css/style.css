@@ -246,6 +246,9 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
   border-top: 1px #c2c2c2 solid;
   border-bottom: 1px #c2c2c2 solid;
   padding: 0em 0;
@@ -277,6 +280,27 @@ a:hover {
 
 .product-title {
   font-weight: 700;
+}
+
+.product-quantity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn-addCart {
+  cursor: pointer;
+}
+
+.btn-removeCart {
+  cursor: pointer;
 }
 
 /*Footer*/

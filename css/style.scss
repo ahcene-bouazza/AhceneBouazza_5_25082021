@@ -183,6 +183,7 @@ a:hover {
 
 .cart-product {
   display: flex;
+  justify-content: start;
   border-top: 1px $lightgrey_color solid;
   border-bottom: 1px $lightgrey_color solid;
   padding: 0em 0;
@@ -209,7 +210,17 @@ a:hover {
 .product-title {
   font-weight: 700;
 }
-
+.product-quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.btn-addCart {
+  cursor: pointer;
+}
+.btn-removeCart {
+  cursor: pointer;
+}
 /*Footer*/
 footer {
   display: flex;
