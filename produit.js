@@ -1,3 +1,4 @@
+// Javascript Produit
 // recuperation id de l'url
 const urlString = window.location.search;
 const urlParams = new URLSearchParams(urlString);
@@ -38,15 +39,36 @@ function showProduct () {
 // gestion des bouttons ajouter au panier
 
         const cartBtn = document.querySelector('#addCartBtn');
-        cartBtn.addEventListener("click", (e)=>{
-            event.preventDefault();
-
+        cartBtn.addEventListener("click", ()=>{    
+            cartNumbers();
+            
         })
 
+        function onLoadCartNumbers(){
+            let productNumbers = localStorage.getItem('cartNumbers');
+            if(productNumbers){
+               document.querySelector('#cart-number').textContent= productNumbers;
+            }
+        }
+
+        function cartNumbers(){
+            let productNumbers = localStorage.getItem('cartNumbers');
+            productNumbers = parseInt(productNumbers);
+            if( productNumbers){
+                localStorage.setItem('cartNumbers',productNumbers+1);
+                document.querySelector('#cart-number').textContent= productNumbers + 1;
+            } else {
+                localStorage.setItem('cartNumbers', 1);
+                document.querySelector('#cart-number').textContent= 1;
+
+            }
+                        
+        }
+        onLoadCartNumbers();
 
     });    
 }
 
-
+// Javascript Produit
 
 
