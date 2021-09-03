@@ -48,7 +48,7 @@
         <div class="col-12 p-0 my-3 mt col-md-9 pr-md-3 cart-products">
             <h3 class="mb-3">Mon panier</h3>
     <!-- cartSingleProduct-->
-            <div class="cart-product">
+            <div class="cart-product" id="productsBasket">
             <div class="product-img-container">
                 <img class="product-img" src="/images/vcam_2.jpg" alt="image produit">
             </div>
@@ -67,12 +67,24 @@
         </div>
         <div class="col-12 col-md-3 cart-total">
             <h3>Total</h3>
-            <p>150€</p>
+            <p id="totalPrice">150€</p>
             <a href="" class="btn btn-dark">Commander</a>
         </div>
         </div>
     </section>
     <!-- CartEnd -->
+
+<!-- emptyBasket -->
+<section id="emptyBasket">
+    <div class="container my-3 py-1">
+        <div class="text-center my-5 shadow p-3 mb-5 bg-body rounded">
+            <h1 class="fs-1 font-weight-bold text-secondary my-5">Oups, votre panier semble vide, commencez vos achats
+            </h1>
+            <a role="button" class="btn btn-secondary text-uppercase my-3" href="../index.html">C'est par
+                ici</a>
+        </div>
+    </div>`
+</section>
 
 <!-- Footer -->
 <footer class="container-fluid mt-5">
@@ -80,7 +92,8 @@
 </footer>
 <!-- FooterEnd -->
 
-<script src="/main.js"></script>
+<script src="/js/main.js"></script>
+<script src="/cart.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
