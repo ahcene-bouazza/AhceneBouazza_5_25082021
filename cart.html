@@ -15,6 +15,7 @@
 
 
     <title>Orinoco Panier</title>
+
 </head>
 
 <body>
@@ -22,8 +23,8 @@
     <!-- Header -->
     <header class="col navbar navbar-expand navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="index.html"> <img src="images/logo_orinoco.png" alt="logo_orinoco"
-                    class="w-50"> </a>
+            <a class="navbar-brand" href="index.html"> <img src="images/logo_orinoco.png" alt="logo_orinoco" class="w-50">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,7 +35,7 @@
                             <span class="nav-icon">
                                 <i class="fas fa-cart-plus"></i>
                             </span>
-                            <div class="cart-items">0</div>
+                            <div class="cart-items" id="cart-number">0</div>
                         </a>
                     </li>
                 </ul>
@@ -42,58 +43,36 @@
         </div>
     </header>
     <!-- HeaderEnd -->
+
     <!-- Cart -->
-    <section class="container container-product-cart">
-        <div class="row">
-        <div class="col-12 p-0 my-3 mt col-md-9 pr-md-3 cart-products">
+    <section class="cartContainer">
+
+        <div class="productsContainer">
             <h3 class="mb-3">Mon panier</h3>
-    <!-- cartSingleProduct-->
-            <div class="cart-product" id="productsBasket">
-            <div class="product-img-container">
-                <img class="product-img" src="/images/vcam_2.jpg" alt="image produit">
-            </div>
-            <div class="product-info">
-                <p class="product-title">Ma Camera</p>
-                <p class="product-type"> Objectif vintage 50mm</p>
-                <a href="#" class="remove-btn"> <i class="fas fa-trash-alt"></i> supprimer</a>
-            </div>
-            <div class="product-quantity ml-auto mr-3">
-                <i class="fas fa-sort-up btn-addCart"></i>
-                <p class="cart-quantity ">0</p>
-                <i class="fas fa-sort-down btn-removeCart"></i>
-            </div>
-            </div>
-<!-- cartSingleProductEnd-->
+
+<!-- cartSingleProduct-->
+        <div id="productsBasket">
+
         </div>
-        <div class="col-12 col-md-3 cart-total">
+<!-- cartSingleProductEnd-->
+        <div class="cart-total">
             <h3>Total</h3>
-            <p id="totalPrice">150€</p>
+            <p id="totalPrice"></p>
             <a href="" class="btn btn-dark">Commander</a>
         </div>
+
         </div>
+
+
     </section>
     <!-- CartEnd -->
-
-<!-- emptyBasket -->
-<section id="emptyBasket">
-    <div class="container my-3 py-1">
-        <div class="text-center my-5 shadow p-3 mb-5 bg-body rounded">
-            <h1 class="fs-1 font-weight-bold text-secondary my-5">Oups, votre panier semble vide, commencez vos achats
-            </h1>
-            <a role="button" class="btn btn-secondary text-uppercase my-3" href="../index.html">C'est par
-                ici</a>
-        </div>
-    </div>`
-</section>
 
 <!-- Footer -->
 <footer class="container-fluid mt-5">
     <p class="copyright">Copyright 2021 - Orinoco</p>
 </footer>
 <!-- FooterEnd -->
-
-<script src="/js/main.js"></script>
-<script src="/cart.js"></script>
+<script src="/js/cart.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
