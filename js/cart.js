@@ -1,5 +1,5 @@
 // récupérer données localStorage :
-let items = JSON.parse(localStorage.getItem("produit"));
+let items = JSON.parse(localStorage.getItem("produit"))
 
 
 // Afficher les données dans le panier
@@ -44,13 +44,13 @@ if(items === null){
 
             }) 
 
-    cartProductList.innerHTML= cartProducts;
-
+    cartProductList.innerHTML= cartProducts;     
 }
 
 
 // boutton supprimer produit panier
     const btnRemove = document.querySelectorAll("#removeItem")
+
 
     btnRemove.forEach( button=>{
 
@@ -59,6 +59,7 @@ if(items === null){
     let newCart = [] ;
 
     items.map( data=>{
+        
         if (data.id !== e.target.parentElement.parentElement.id){
         newCart.push(data);
         }

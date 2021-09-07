@@ -44,21 +44,21 @@ fetch(newUrl)
      }
 
 
-        // setup boutton Ajouter au panier 
+       // setup boutton Ajouter au panier 
         const addToCartBtn = document.getElementById("addToCart");
         addToCartBtn.addEventListener("click", e=>{
         e.preventDefault();
         
-        let item = {
+            let item = {
             name : e.target.parentElement.children[0].textContent,
-            _id : e.target.parentElement.children[0].id,
+            id : e.target.parentElement.children[0].id,
             price : e.target.parentElement.children[2].children[0].textContent,
             image : e.target.parentElement.parentElement.children[0].children[0].src,
-            option : e.target.parentElement.children[1].children[1].value,
+            option : e.target.parentElement.children[1].children[0].value,
             no : 1
         };
 
-            // fonction popup ajout panier
+        // fonction popup ajout panier
         const poPup = ()=> {
         if (window.confirm(`${e.target.parentElement.children[0].textContent} à bien été ajouté au panier, consulter le panier OK ou revenir à l'accueil ANNULER`)){
         window.location.href = "cart.html" ;
@@ -68,29 +68,77 @@ fetch(newUrl)
         }
 
         // local Storage setup
-        let items = JSON.parse(localStorage.getItem("produit"));
-        console.log(items);
+       
+       let items = JSON.parse(localStorage.getItem("produit"));
 
 
         if(items){
             items.push(item);
             localStorage.setItem("produit", JSON.stringify(items));
+            window.location.reload();
             poPup();
         }else{
             items = [];
             items.push(item);
             localStorage.setItem("produit", JSON.stringify(items));
             poPup();
+
         }
+    
 
 
-        });
+        // local storage test
+
+        // localStorage.setItem('data', '[1, 2, 3]');
+        const addToCartBtn = document.getElementById("addToCart");
+        let items = [];
+        
 
 
+/*        addToCartBtn.addEventListener("click", e=>{
+        e.preventDefault();
+
+            let item = {
+            name : e.target.parentElement.children[0].textContent,
+            id : e.target.parentElement.children[0].id,
+            price : e.target.parentElement.children[2].children[0].textContent,
+            image : e.target.parentElement.parentElement.children[0].children[0].src,
+            option : e.target.parentElement.children[1].children[0].value,
+            no : 1
+            };
+
+            if(localStorage.getItem('produit') == null){
+            items.push(item);
+            localStorage.setItem('produit', JSON.stringify(items));
+            }
+            else{
+                let newitems = JSON.parse(localStorage.getItem('produit'));
+
+                newitems.map(data=>{
+                    if(item.id == data.id){
+                    item.no = data.no +1 ;
+                    localStorage.setItem('produit', JSON.stringify(items));
+
+                    }else{
+                    newitems.push(item);
+                    localStorage.setItem('produit', JSON.stringify(items));
+                        }
+                });
+            items.push(item);
+            localStorage.setItem('produit', JSON.stringify(items));
+
+/*            }
+
+        // local storage end test
+
+    // add event listener end
+       });
+
+    // fetch function end
     });
     
 
-/*
+
     // Cart number icon
     let items = JSON.parse(localStorage.getItem("produit"));
     const cartNumber = document.getElementById('cart-number');
@@ -99,7 +147,7 @@ fetch(newUrl)
         no = no+data.no
     });
     cartNumber.innerHTML = no;
-*/
+
 
 
 
