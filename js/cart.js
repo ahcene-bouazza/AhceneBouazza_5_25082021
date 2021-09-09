@@ -28,14 +28,15 @@ if(JSON.parse(localStorage.getItem('items')) === null){
 
                 <div class="product-info">
                     <p class="product-title">${element.name}</p>
-                    <p class="product-type"> option : ${element.option}</p>
+                    <p class="product-price"><span>${element.price}</span>€</p>
+                    <p class="product-type"> option :<span>${element.option}</span></p>
                     <a href="#" class="remove-btn"> <i class="fas fa-trash-alt"></i> supprimer</a>
                 </div>
 
                 <div class="product-quantity ml-auto">
-                    <i class="fas fa-sort-up btn-addCart"></i>
+                    <i class="fas fa-sort-up " id="btnAddCart"></i>
                     <p class="cart-quantity ">${element.no}</p>
-                    <i class="fas fa-sort-down btn-removeCart"></i>
+                    <i class="fas fa-sort-down " id="btnRemoveCart"></i>
                 </div>
                 </div>
         `;  
@@ -46,39 +47,127 @@ if(JSON.parse(localStorage.getItem('items')) === null){
 }
 
 
-// boutton supprimer produit panier
-    const btnRemove = document.querySelectorAll("#removeItem")
+// supprimer produit :
 
+removeProductFromCart();
 
-    btnRemove.forEach( button=>{
+function removeProductFromCart (){
 
-    button.addEventListener("click", (e)=>{
+    const btnRemove = document.querySelectorAll(".remove-btn");
+    
+    btnRemove.forEach(btn=>{
+        btn.addEventListener("click", (e)=>{
+            let newCart = [];
+            
+            JSON.parse(localStorage.getItem('items')).forEach(element=>{
 
-    let newCart = [] ;
+                if(element.id !== e.target.parentElement.parentElement.className || element.option != e.target.parentElement.parentElement.children[1].children[2].children[0].textContent){
+                    newCart.push(element);                    
+                }
 
-    JSON.parse(localStorage.getItem('items')).map( data=>{
+            localStorage.setItem('items',JSON.stringify(newCart));
+			window.location.reload();    
+                      
+            }); 
+
+        });       
+    });   
+}
+
+// Augementer quantité produit
+    const addCartBtn = document.querySelectorAll("#btnAddCart");
+    let items = [];
+    
+
         
-        if (data.id !== e.target.parentElement.parentElement.id){
-        newCart.push(data);
-        }
+    addCartBtn.forEach(btn=>{
+        btn.addEventListener("click", (e)=>{
+            e.preventDefault();
+
+            let item = {
+            name : e.target.parentElement.parentElement.children[1].children[0].textContent,
+            id : e.target.parentElement.parentElement.className,
+            price : e.target.parentElement.parentElement.children[1].children[1].children[0].textContent,
+            image : e.target.parentElement.parentElement.children[0].children[0].src,
+            option : e.target.parentElement.parentElement.children[1].children[2].children[0].textContent,
+            no : 1
+            };
+                
+            if(JSON.parse(localStorage.getItem('items')) === null){
+                items.push(item);
+                localStorage.setItem("items",JSON.stringify(items));
+                window.location.reload();
+            }else{
+                const localItems = JSON.parse(localStorage.getItem("items"));
+                localItems.map(data=>{
+                    if(item.id == data.id && item.option == data.option){
+                        item.no = data.no + 1;
+                    }else{
+                        items.push(data);
+                    }
+                });
+                items.push(item);
+                localStorage.setItem('items',JSON.stringify(items));
+                window.location.reload();
+            }
+        });
     });
-    localStorage.setItem('produit', JSON.stringify(newCart))
-    window.location.reload();
 
 
-    })
-})
+    
+// Diminuer quantité produit
+
+    const removeCartBtn = document.querySelectorAll("#btnRemoveCart");
+    let removedItems = [];
+
+    removeCartBtn.forEach(btn=>{
+        btn.addEventListener("click", (e)=>{
+            e.preventDefault();
+
+            let removeditem = {
+            name : e.target.parentElement.parentElement.children[1].children[0].textContent,
+            id : e.target.parentElement.parentElement.className,
+            price : e.target.parentElement.parentElement.children[1].children[1].children[0].textContent,
+            image : e.target.parentElement.parentElement.children[0].children[0].src,
+            option : e.target.parentElement.parentElement.children[1].children[2].children[0].textContent,
+            no : 1
+            };
+    
+            if(JSON.parse(localStorage.getItem('items')) === null){
+                removedItems.push(removeditem);
+                localStorage.setItem("items",JSON.stringify(removedItems));
+                window.location.reload();
+            }else{
+                const localItems = JSON.parse(localStorage.getItem("items"));
+                localItems.map(data=>{
+                    if(removeditem.id == data.id && removeditem.option == data.option){
+                        if(removeditem.no > 1){
+                           removeditem.no = data.no - 1;
+                        }else{
+                           removeProductFromCart();
+                        }
+                    }else{
+                        removedItems.push(data);
+                    }
+                });
+                removedItems.push(removeditem);
+                localStorage.setItem('items',JSON.stringify(removedItems));
+                window.location.reload();
+            }
+        });
+    });
 
 
-/*
-// adding data to shopping cart
+
+
+// adding data to shopping cart icon
     const cartNumber = document.getElementById('cart-number');
-    let no=0;
+    no=0;
     JSON.parse(localStorage.getItem('items')).map(data=>{
         no = no+data.no
     });
     cartNumber.innerHTML = no;
-*/
+
 
 
 

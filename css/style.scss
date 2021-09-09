@@ -128,6 +128,7 @@ a:hover {
 }
 .product-img {
   display: block;
+  height: 100%;
   width: 100%;
 }
 .info-btn {
@@ -191,7 +192,7 @@ a:hover {
   padding-right: 1em;
 }
 .product-img {
-  height: 100px;
+  height: 100%;
   min-width: 20px;
   object-fit: cover;
 }
@@ -212,21 +213,27 @@ a:hover {
 .product-title {
   font-weight: 700;
 }
+.product-price {
+  font-size: 1em;
+  font-weight: 500;
+}
 .product-quantity {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-right: 1em;
 }
-.btn-addCart {
-  cursor: pointer;
-}
-.btn-removeCart {
-  cursor: pointer;
-}
+
 .addtocart-btn {
   background-color: $secondary_color;
   color: white;
+}
+
+#btnAddCart {
+  cursor: pointer;
+}
+#btnRemoveCart {
+  cursor: pointer;
 }
 
 /*Footer*/
