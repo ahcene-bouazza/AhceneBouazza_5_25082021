@@ -1,13 +1,9 @@
-// récupérer données localStorage :
-let items = JSON.parse(localStorage.getItem("produit"))
-
-
 // Afficher les données dans le panier
 
 const cartProductList = document.getElementById("productsBasket");
 let cartProducts ='';
 
-if(items === null){
+if(JSON.parse(localStorage.getItem('items')) === null){
     cartProducts = `
     <section id="emptyBasket">
     <div class="container my-3 py-1">
@@ -23,26 +19,28 @@ if(items === null){
     cartProductList.innerHTML= cartProducts;
 }else{
 
-    items.forEach(element => {
+    JSON.parse(localStorage.getItem('items')).forEach(element => {
         cartProducts += `
-            <div class="productContainer" id="${element.id}">
-            <div class="product-img-container">
-                <img class="product-img" src="${element.image}" alt="image produit">
-            </div>
-            <div class="product-info">
-                <p class="product-title" >${element.name} - ${element.price}€ </p>
-                <p class="product-type"> ${element.option}</p>
-                <a href="#" class="remove-btn" id="removeItem"> <i class="fas fa-trash-alt"></i> supprimer </a>
-            </div>
-            <div class="product-quantity ml-auto mr-3">
-                <i class="fas fa-sort-up btn-addCart" ></i>
-                <p class="cart-quantity ">${element.no}</p>
-                <i class="fas fa-sort-down btn-removeCart"></i>
-            </div>
-            </div>
+                <div id="singleProduct" class="${element.id}">
+                <div class="product-img-container">
+                    <img class="product-img" src="${element.image}" alt="image produit">
+                </div>
+
+                <div class="product-info">
+                    <p class="product-title">${element.name}</p>
+                    <p class="product-type"> option : ${element.option}</p>
+                    <a href="#" class="remove-btn"> <i class="fas fa-trash-alt"></i> supprimer</a>
+                </div>
+
+                <div class="product-quantity ml-auto">
+                    <i class="fas fa-sort-up btn-addCart"></i>
+                    <p class="cart-quantity ">${element.no}</p>
+                    <i class="fas fa-sort-down btn-removeCart"></i>
+                </div>
+                </div>
         `;  
 
-            }) 
+            });
 
     cartProductList.innerHTML= cartProducts;     
 }
@@ -58,7 +56,7 @@ if(items === null){
 
     let newCart = [] ;
 
-    items.map( data=>{
+    JSON.parse(localStorage.getItem('items')).map( data=>{
         
         if (data.id !== e.target.parentElement.parentElement.id){
         newCart.push(data);
@@ -72,14 +70,15 @@ if(items === null){
 })
 
 
-
-// Cart number icon
+/*
+// adding data to shopping cart
     const cartNumber = document.getElementById('cart-number');
     let no=0;
-    items.forEach(data=>{
+    JSON.parse(localStorage.getItem('items')).map(data=>{
         no = no+data.no
     });
     cartNumber.innerHTML = no;
+*/
 
 
 
@@ -89,7 +88,7 @@ if(items === null){
 
     function calcTotalCart() {
     let totalCart = 0;
-    items.forEach(element => {
+    JSON.parse(localStorage.getItem('items')).forEach(element => {
         totalCart = totalCart + element.price * element.no;
     });
     return totalCart;

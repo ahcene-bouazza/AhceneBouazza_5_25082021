@@ -1,5 +1,7 @@
+
 // Variables
 const url = "http://localhost:3000/api/cameras";
+const basket = JSON.parse(localStorage.getItem("cameras")) || [] ;
 
 // Fetch URL 
 fetch(url)
@@ -31,14 +33,12 @@ function addProductList(data){
     }
 }
 
-
-// Cart number icon
-let items = JSON.parse(localStorage.getItem("produit"));
+/*
+// adding data to shopping cart
 const cartNumber = document.getElementById('cart-number');
 let no=0;
-items.forEach(data=>{
+JSON.parse(localStorage.getItem('items')).map(data=>{
     no = no+data.no
 });
 cartNumber.innerHTML = no;
-
-
+*/

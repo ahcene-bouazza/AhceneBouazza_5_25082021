@@ -199,44 +199,17 @@ a:hover {
 }
 
 /*cart-page*/
-.cartContainer {
+.container-product-cart {
   width: 90vw;
   margin: 0 auto;
   margin-top: 2em;
 }
 
-.productsContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.productsBasket {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.productContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border-radius: 10px;
-  border: solid #9f64cd 2px;
-  overflow: hidden;
-  margin-bottom: 1em;
-}
-
 .cart-total {
   padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -245,31 +218,42 @@ a:hover {
 }
 
 .cart-total h3 {
+  display: block;
   border-bottom: 1px #c2c2c2 solid;
 }
 
 .cart-total p {
+  display: block;
   font-size: 1.5em;
   font-weight: bold;
 }
 
-.cart-product {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border-top: 1px #c2c2c2 solid;
-  border-bottom: 1px #c2c2c2 solid;
+#productsBasket {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
   padding: 0em 0;
 }
 
+#singleProduct {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #9f64cd;
+  margin-bottom: 1em;
+  overflow: hidden;
+}
+
 .product-img-container {
-  width: 150px;
-  height: 100%;
+  width: 20%;
   padding-right: 1em;
 }
 
 .product-img {
-  height: 100%;
+  height: 100px;
+  min-width: 20px;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -280,6 +264,19 @@ a:hover {
 
 .remove-btn:hover {
   color: #9f64cd;
+}
+
+.product-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .product-info p {
@@ -301,6 +298,7 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding-right: 1em;
 }
 
 .btn-addCart {

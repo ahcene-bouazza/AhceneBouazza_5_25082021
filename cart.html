@@ -15,11 +15,11 @@
 
 
     <title>Orinoco Panier</title>
-
 </head>
 
 <body>
 
+    <!-- Header -->
     <!-- Header -->
     <header class="col navbar navbar-expand navbar-light bg-light">
         <div class="container">
@@ -31,7 +31,7 @@
             <div id="navbarContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item cart-btn">
-                        <a href="" class="cart-link">
+                        <a href="cart.html" class="cart-link">
                             <span class="nav-icon">
                                 <i class="fas fa-cart-plus"></i>
                             </span>
@@ -43,36 +43,53 @@
         </div>
     </header>
     <!-- HeaderEnd -->
-
+    <!-- HeaderEnd -->
     <!-- Cart -->
-    <section class="cartContainer">
-
-        <div class="productsContainer">
+    <section class="container container-product-cart">
+        <div class="p-0 my-3 cart-products">
             <h3 class="mb-3">Mon panier</h3>
+    <!-- cartSingleProduct-->
+            <div id="productsBasket">
 
-<!-- cartSingleProduct-->
-        <div id="productsBasket">
+                <div id="singleProduct">
+                <div class="product-img-container">
+                    <img class="product-img" src="/images/vcam_2.jpg" alt="image produit">
+                </div>
 
-        </div>
+                <div class="product-info">
+                    <p class="product-title">Ma Camera</p>
+                    <p class="product-type"> Objectif vintage 50mm</p>
+                    <a href="#" class="remove-btn"> <i class="fas fa-trash-alt"></i> supprimer</a>
+                </div>
+
+                <div class="product-quantity ml-auto">
+                    <i class="fas fa-sort-up btn-addCart"></i>
+                    <p class="cart-quantity ">0</p>
+                    <i class="fas fa-sort-down btn-removeCart"></i>
+                </div>
+                </div>
+
+            </div>
 <!-- cartSingleProductEnd-->
+        </div>
         <div class="cart-total">
             <h3>Total</h3>
             <p id="totalPrice"></p>
             <a href="" class="btn btn-dark">Commander</a>
         </div>
-
-        </div>
-
-
     </section>
     <!-- CartEnd -->
+
+<!-- emptyBasket on javaScript-->
+
 
 <!-- Footer -->
 <footer class="container-fluid mt-5">
     <p class="copyright">Copyright 2021 - Orinoco</p>
 </footer>
 <!-- FooterEnd -->
-<script src="/js/cart.js"></script>
+
+<script src="/js/cart.js"></script> 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
