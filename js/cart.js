@@ -77,7 +77,9 @@ function removeProductFromCart (){
 // Augementer quantité produit
     const addCartBtn = document.querySelectorAll("#btnAddCart");
     let items = [];
-          
+    
+
+        
     addCartBtn.forEach(btn=>{
         btn.addEventListener("click", (e)=>{
             e.preventDefault();
@@ -112,11 +114,10 @@ function removeProductFromCart (){
     });
 
 
-   
+    
 // Diminuer quantité produit
 
     const removeCartBtn = document.querySelectorAll("#btnRemoveCart");
-    
     let removedItems = [];
 
     removeCartBtn.forEach(btn=>{
@@ -131,21 +132,31 @@ function removeProductFromCart (){
             option : e.target.parentElement.parentElement.children[1].children[2].children[0].textContent,
             no : 1
             };
-                       
-            JSON.parse(localStorage.getItem("items")).forEach(data=>{
-                if(removeditem.id == data.id || removeditem.option == data.option ){                  
-                   removeditem.no = data.no - 1;                
-                }
-
-              
-            });
-
-            removedItems.push(removeditem);
-            localStorage.setItem('items',JSON.stringify(removedItems));
-            window.location.reload(); 
-
+    
+            if(JSON.parse(localStorage.getItem('items')) === null){
+                removedItems.push(removeditem);
+                localStorage.setItem("items",JSON.stringify(removedItems));
+                window.location.reload();
+            }else{
+                const localItems = JSON.parse(localStorage.getItem("items"));
+                localItems.map(data=>{
+                    if(removeditem.id == data.id && removeditem.option == data.option){
+                        if(removeditem.no > 1){
+                           removeditem.no = data.no - 1;
+                        }else{
+                           removeProductFromCart();
+                        }
+                    }else{
+                        removedItems.push(data);
+                    }
+                });
+                removedItems.push(removeditem);
+                localStorage.setItem('items',JSON.stringify(removedItems));
+                window.location.reload();
+            }
         });
     });
+
 
 
 
