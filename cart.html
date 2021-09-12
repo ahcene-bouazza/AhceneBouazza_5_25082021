@@ -75,7 +75,6 @@
         <div class="cart-total">
             <h3>Total</h3>
             <p id="totalPrice"></p>
-            <a href="" class="btn btn-dark" id="orderBtn">Commander</a>
         </div>
     </section>
     <!-- CartEnd -->
@@ -84,6 +83,36 @@
 
 <!-- Form-->
 <div class="form-container-div" id="form-container">
+<h2 class="form-title">Informations</h2>
+
+<form class="container contact__form" id="orderForm">
+
+    <label class="label" for="firstname">PRENOM</label>
+    <input class="details__form" type="text" name="firstname" id="firstname" placeholder="Jhon" maxlength="25"
+        pattern="[a-zA-ZÀ-ÿ]{2,}" required />
+
+    <label class="label" for="name">NOM</label>
+    <input class="details__form" type="text" name="name" id="name" placeholder="Colin" maxlength="25"
+        pattern="[a-zA-ZÀ-ÿ]{2,}" required />
+
+
+    <label class="label" for="address">ADRESSE</label>
+    <input class="details__form" type="text" name="address" id="address" placeholder="20 rue lucille" maxlength="50"
+        required />
+
+
+    <label class="label" for="city">VILLE</label>
+    <input class="details__form" type="text" name="city" id="city" placeholder="Paris" maxlength="50"
+        pattern="[A-Za-z]{2,}" required />
+
+
+    <label class="label" for="email">EMAIL</label>
+    <input class="details__form" type="email" name="email" id="email"
+        placeholder="Veulliez entrer une adresse valide: adresse@mail.com"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" required />
+
+    <button type="button" class="validate btn-dark btn" id="submit"> Valider vôtre commande </button>
+</form>
 
 <!-- Load form on click JS -->
 

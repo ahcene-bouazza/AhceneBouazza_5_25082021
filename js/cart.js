@@ -170,9 +170,6 @@ function removeProductFromCart (){
     cartNumber.innerHTML = no;
 
 
-
-
-
 // affichage du total
     const totalPrice = document.getElementById("totalPrice");
 
@@ -194,42 +191,83 @@ const orderBtn = document.getElementById("orderBtn");
 let displayForm = '';
 
 
-orderBtn.addEventListener("click", (e)=>{
-    e.preventDefault();
-    if(JSON.parse(localStorage.getItem('items')) !== null){
 
-        displayForm =`
-        <h2 class="form-title">Informations</h2>
+if(JSON.parse(localStorage.getItem('items')) !== null && JSON.parse(localStorage.getItem('items')).length !== 0 ){
 
-        <form class="container contact__form" action="post" type="submit">
+    displayForm =`
+    <h2 class="form-title">Informations</h2>
 
-        <label class ="label" for="firstname">PRENOM</label>
-        <input class ="details__form" type="text" name="firstname" id="firstname" placeholder="Jhon" maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}" required />
+    <form class="container contact__form"  id="orderForm">
 
-        <label class ="label" for="name">NOM</label>
-        <input class ="details__form" type="text" name="name" id="name" placeholder="Colin" maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}" required />
+    <label class ="label" for="firstname">PRENOM</label>
+    <input class ="details__form" type="text" name="firstname" id="firstname" placeholder="Jhon" maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}" required />
 
-
-        <label class ="label" for="address">ADRESSE</label>
-        <input class ="details__form" type="text" name="address" id="address" placeholder="20 rue lucille" maxlength="50" required />
+    <label class ="label" for="name">NOM</label>
+    <input class ="details__form" type="text" name="name" id="name" placeholder="Colin" maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}" required />
 
 
-        <label class ="label" for="city">VILLE</label>
-        <input class ="details__form" type="text" name="city" id="city" placeholder="Paris" maxlength="50" pattern="[A-Za-z]{2,}" required />
+    <label class ="label" for="address">ADRESSE</label>
+    <input class ="details__form" type="text" name="address" id="address" placeholder="20 rue lucille" maxlength="50" required />
 
 
-        <label class ="label" for="email">EMAIL</label>
-        <input class ="details__form" type="email" name="email" id="email"
-            placeholder="Veulliez entrer une adresse valide: votreadresse@mail.com"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" required />
+    <label class ="label" for="city">VILLE</label>
+    <input class ="details__form" type="text" name="city" id="city" placeholder="Paris" maxlength="50" pattern="[A-Za-z]{2,}" required />
 
-        <button type="submit" class="validate btn-dark btn" id="submit"> Valider vôtre commande </button>
-        </form>
 
-        `;
+    <label class ="label" for="email">EMAIL</label>
+    <input class ="details__form" type="email" name="email" id="email"
+        placeholder="Veulliez entrer une adresse valide: adresse@mail.com"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" required />
 
-        formBlock.innerHTML = displayForm;
-    }
+    <button type="button" class="validate btn-dark btn" id="submit"> Valider vôtre commande </button>
+    </form>
+
+    `;
+
+    formBlock.innerHTML = displayForm;
+}else{
+    formBlock.innerHTML = null;
+}
     
 
+
+
+// Récupération des informations du formulaire
+const submit = document.querySelector("#submit");
+const orderData = JSON.parse(localStorage.getItem("items"));
+
+submit.addEventListener("click", (e)=>{
+    e.preventDefault();
+ 
+    let contact = {
+        firstName: document.getElementById("firstname").value,
+        lastName: document.getElementById("name").value,
+        address: document.getElementById("address").value,
+        city: document.getElementById("city").value,
+        email: document.getElementById("email").value,
+    };
+
+    localStorage.setItem("StoredForm", JSON.stringify(contact));
+    
+    formData = JSON.parse(localStorage.getItem("StoredForm"));
+
+
+    const promise1 = fetch("http://localhost:3000/api/cameras/order", {
+    method : "POST",
+    body : JSON.stringify(formData),
+    headers : {
+        "Content-type" : "application/json"
+    }
+    });
+    
+
+
+
+
 });
+
+
+
+
+
+// Send Form and  order data to server
