@@ -233,7 +233,7 @@ a:hover {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
-  padding: 0em 0;
+  padding: 0;
 }
 
 #singleProduct {
@@ -318,6 +318,44 @@ a:hover {
 
 #btnRemoveCart {
   cursor: pointer;
+}
+
+.contact__form {
+  width: 90vw;
+  margin: 1em auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form-title {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.details__form {
+  width: 70%;
+  margin-bottom: 1em;
+}
+
+.validate {
+  width: 70%;
+  margin: 1em;
+}
+
+.label {
+  padding: 0;
+  margin: 0;
 }
 
 /*Footer*/

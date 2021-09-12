@@ -87,7 +87,6 @@ fetch(newUrl)
 					window.location.reload();
 				}
   
-    // end of click
        });
 
     // fetch function end

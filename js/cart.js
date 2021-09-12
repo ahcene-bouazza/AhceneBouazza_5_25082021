@@ -57,20 +57,21 @@ function removeProductFromCart (){
     
     btnRemove.forEach(btn=>{
         btn.addEventListener("click", (e)=>{
+
             let newCart = [];
             
             JSON.parse(localStorage.getItem('items')).forEach(element=>{
 
                 if(element.id !== e.target.parentElement.parentElement.className || element.option != e.target.parentElement.parentElement.children[1].children[2].children[0].textContent){
-                    newCart.push(element);                    
+                    newCart.push(element);                   
                 }
 
             localStorage.setItem('items',JSON.stringify(newCart));
-			window.location.reload();    
-                      
+			window.location.reload();
+                     
             }); 
 
-        });       
+        }); 
     });   
 }
 
@@ -144,7 +145,7 @@ function removeProductFromCart (){
                         if(removeditem.no > 1){
                            removeditem.no = data.no - 1;
                         }else{
-                           removeProductFromCart();
+                           removedItems.splice(removedItems.indexOf(data), 1);
                         }
                     }else{
                         removedItems.push(data);
@@ -186,3 +187,49 @@ function removeProductFromCart (){
     totalPrice.innerHTML += `${calcTotalCart()}<span>€</span>`;
 
 
+// Afficher le formulaire
+
+const formBlock = document.getElementById("form-container");
+const orderBtn = document.getElementById("orderBtn");
+let displayForm = '';
+
+
+orderBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    if(JSON.parse(localStorage.getItem('items')) !== null){
+
+        displayForm =`
+        <h2 class="form-title">Informations</h2>
+
+        <form class="container contact__form" action="post" type="submit">
+
+        <label class ="label" for="firstname">PRENOM</label>
+        <input class ="details__form" type="text" name="firstname" id="firstname" placeholder="Jhon" maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}" required />
+
+        <label class ="label" for="name">NOM</label>
+        <input class ="details__form" type="text" name="name" id="name" placeholder="Colin" maxlength="25" pattern="[a-zA-ZÀ-ÿ]{2,}" required />
+
+
+        <label class ="label" for="address">ADRESSE</label>
+        <input class ="details__form" type="text" name="address" id="address" placeholder="20 rue lucille" maxlength="50" required />
+
+
+        <label class ="label" for="city">VILLE</label>
+        <input class ="details__form" type="text" name="city" id="city" placeholder="Paris" maxlength="50" pattern="[A-Za-z]{2,}" required />
+
+
+        <label class ="label" for="email">EMAIL</label>
+        <input class ="details__form" type="email" name="email" id="email"
+            placeholder="Veulliez entrer une adresse valide: votreadresse@mail.com"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" required />
+
+        <button type="submit" class="validate btn-dark btn" id="submit"> Valider vôtre commande </button>
+        </form>
+
+        `;
+
+        formBlock.innerHTML = displayForm;
+    }
+    
+
+});
