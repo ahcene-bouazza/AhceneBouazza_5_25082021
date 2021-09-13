@@ -57,19 +57,27 @@ function removeProductFromCart (){
     
     btnRemove.forEach(btn=>{
         btn.addEventListener("click", (e)=>{
-
-            let newCart = [];
             
+            if(JSON.parse(localStorage.getItem('items')).length > 1){
+
+            let newCart = [];            
             JSON.parse(localStorage.getItem('items')).forEach(element=>{
 
                 if(element.id !== e.target.parentElement.parentElement.className || element.option != e.target.parentElement.parentElement.children[1].children[2].children[0].textContent){
                     newCart.push(element);                   
                 }
 
-            localStorage.setItem('items',JSON.stringify(newCart));
-			window.location.reload();
-                     
-            }); 
+                localStorage.setItem('items',JSON.stringify(newCart));
+                window.location.reload();     
+
+            });
+
+            }else{
+
+                localStorage.clear();
+                document.location.reload();
+
+            }
 
         }); 
     });   
@@ -192,8 +200,9 @@ let displayForm = '';
 
 
 
-if(JSON.parse(localStorage.getItem('items')) !== null && JSON.parse(localStorage.getItem('items')).length !== 0 ){
-
+if(localStorage.getItem('items') === null){
+    formBlock.innerHTML = null;
+}else{
     displayForm =`
     <h2 class="form-title">Informations</h2>
 
@@ -225,20 +234,17 @@ if(JSON.parse(localStorage.getItem('items')) !== null && JSON.parse(localStorage
     `;
 
     formBlock.innerHTML = displayForm;
-}else{
-    formBlock.innerHTML = null;
 }
     
 
-
-
 // Récupération des informations du formulaire
 const submit = document.querySelector("#submit");
-const orderData = JSON.parse(localStorage.getItem("items"));
+const basket = JSON.parse(localStorage.getItem("items"));
+
 
 submit.addEventListener("click", (e)=>{
     e.preventDefault();
- 
+
     let contact = {
         firstName: document.getElementById("firstname").value,
         lastName: document.getElementById("name").value,
@@ -247,27 +253,32 @@ submit.addEventListener("click", (e)=>{
         email: document.getElementById("email").value,
     };
 
-    localStorage.setItem("StoredForm", JSON.stringify(contact));
-    
-    formData = JSON.parse(localStorage.getItem("StoredForm"));
-
-
-    const promise1 = fetch("http://localhost:3000/api/cameras/order", {
-    method : "POST",
-    body : JSON.stringify(formData),
-    headers : {
-        "Content-type" : "application/json"
+    let products = [];
+    for (singleProduct of basket){
+        products.push(singleProduct.id);
     }
-    });
-    
 
+   
+    // Send Form and  order data to server
 
+    fetch("http://localhost:3000/api/cameras/order", {
+
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ contact, products }),
+        })
+
+        .then((response) => response.json())
+        .then((data) => {
+            localStorage.setItem("order", JSON.stringify(data));
+            document.location.href = "order.html";
+        })
+        .catch((erreur) => console.log("erreur : " + erreur));
 
 
 });
 
 
 
-
-
-// Send Form and  order data to server
