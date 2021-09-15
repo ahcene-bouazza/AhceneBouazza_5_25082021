@@ -1,5 +1,4 @@
 // Afficher les données dans le panier
-
 const cartProductList = document.getElementById("productsBasket");
 let cartProducts ='';
 
@@ -49,11 +48,7 @@ if(JSON.parse(localStorage.getItem('items')) === null){
 
 // supprimer produit :
 
-removeProductFromCart();
-
-function removeProductFromCart (){
-
-    const btnRemove = document.querySelectorAll(".remove-btn");
+const btnRemove = document.querySelectorAll(".remove-btn");
     
     btnRemove.forEach(btn=>{
         btn.addEventListener("click", (e)=>{
@@ -66,29 +61,22 @@ function removeProductFromCart (){
                 if(element.id !== e.target.parentElement.parentElement.className || element.option != e.target.parentElement.parentElement.children[1].children[2].children[0].textContent){
                     newCart.push(element);                   
                 }
-
                 localStorage.setItem('items',JSON.stringify(newCart));
                 window.location.reload();     
-
             });
 
             }else{
-
                 localStorage.clear();
                 document.location.reload();
-
             }
-
         }); 
     });   
-}
+
 
 // Augementer quantité produit
     const addCartBtn = document.querySelectorAll("#btnAddCart");
     let items = [];
     
-
-        
     addCartBtn.forEach(btn=>{
         btn.addEventListener("click", (e)=>{
             e.preventDefault();
@@ -150,10 +138,10 @@ function removeProductFromCart (){
                 const localItems = JSON.parse(localStorage.getItem("items"));
                 localItems.map(data=>{
                     if(removeditem.id == data.id && removeditem.option == data.option){
-                        if(removeditem.no > 1){
+                        if(data.no > 1){
                            removeditem.no = data.no - 1;
                         }else{
-                           removedItems.splice(removedItems.indexOf(data), 1);
+                           
                         }
                     }else{
                         removedItems.push(data);
@@ -228,19 +216,26 @@ if(localStorage.getItem('items') === null){
         placeholder="Veulliez entrer une adresse valide: adresse@mail.com"
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" required />
 
-    <button type="button" class="validate btn-dark btn" id="submit"> Valider vôtre commande </button>
+    <button type="submit" class="validate btn-dark btn" id="submit" value="envoyer"> Valider vôtre commande </button>
     </form>
 
     `;
 
     formBlock.innerHTML = displayForm;
 }
-    
-
 // Récupération des informations du formulaire
 const submit = document.querySelector("#submit");
 const basket = JSON.parse(localStorage.getItem("items"));
 
+
+//validation du formulaire et envoie en POST
+const order = document.getElementById("submit");
+const regexName = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
+const regexCity = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+)){1,10}$/;
+const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
+const regexAddress = /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/;
+
+// ENVOI EN POST
 
 submit.addEventListener("click", (e)=>{
     e.preventDefault();
@@ -252,33 +247,44 @@ submit.addEventListener("click", (e)=>{
         city: document.getElementById("city").value,
         email: document.getElementById("email").value,
     };
+    if (
+        (regexMail.test(contact.email) == true) &
+        (regexName.test(contact.firstName) == true) &
+        (regexName.test(contact.lastName) == true) &
+        (regexCity.test(contact.city) == true) &
+        (regexAddress.test(contact.address) == true)
+    ){
 
-    let products = [];
-    for (singleProduct of basket){
-        products.push(singleProduct.id);
+        let products = [];
+        for (singleProduct of basket){
+            products.push(singleProduct.id);
+        }
+
+
+        // Send Form and  order data to server
+
+        fetch("http://localhost:3000/api/cameras/order", {
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ contact, products }),
+            })
+
+            .then((response) => response.json())
+            .then((data) => {
+                localStorage.setItem("order", JSON.stringify(data));
+                document.location.href = "order.html";
+            })
+            .catch((erreur) => console.log("erreur : " + erreur));
+    
+    }else{
+        alert(
+         "Veuillez correctement renseigner l'entièreté du formulaire pour valider votre commande."
+        );
     }
-
-   
-    // Send Form and  order data to server
-
-    fetch("http://localhost:3000/api/cameras/order", {
-
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ contact, products }),
-        })
-
-        .then((response) => response.json())
-        .then((data) => {
-            localStorage.setItem("order", JSON.stringify(data));
-            document.location.href = "order.html";
-        })
-        .catch((erreur) => console.log("erreur : " + erreur));
-
+    
 
 });
-
-
 
